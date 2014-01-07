@@ -24,6 +24,7 @@ public class KoanExecution {
 
     private String classSource;
     private String solution;
+    private String methodName;
 
     private FrameworkMethod method;
 
@@ -93,5 +94,9 @@ public class KoanExecution {
 
     public String getClassSource() {
         return classSource;
+    }
+
+    public FrameworkMethod getMethod() {
+        return method;
     }
 }

@@ -2,6 +2,7 @@ package com.nps.koan.io;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -43,4 +44,19 @@ public class KoanReader {
    		}
    		return contents.toString();
    	}
+
+    public static FileInputStream getInputStreamByClass(Class<?> testClass) {
+        String packagePath = testClass.getPackage().getName();
+        packagePath = packagePath.replace(".", "/");
+
+        String className = testClass.getSimpleName();
+
+        FileInputStream in = null;
+        try {
+            in = new FileInputStream("src/koan/java/" + packagePath + "/" + className + ".java");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return in;
+    }
 }

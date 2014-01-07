@@ -17,23 +17,23 @@ public class KoanRunnerKoan {
 
     @Koan
     public void shouldRun(){
-        /** (@_@) */
+        /* (@_@) 1 */
         assertTrue(true);
-        /** (^_^) */
+        /* (^_^) 1 */
     }
 
     @Koan @Vex
     public void shouldRemoveSolution(){
-        /** (@_@) */
-		/** (^_^) */
+        /* (@_@) 2 */
+		/* (^_^) 2 */
     }
 
     @Koan @Enlighten
     public void shouldProvideSolution(){
         int i = 0;
-        /** (@_@) */
+        /* (@_@) 3 */
 		i = 5;
-		/** (^_^) */
+		/* (^_^) 3 */
         assertEquals(5, i);
     }
 
@@ -44,7 +44,7 @@ public class KoanRunnerKoan {
 
     @Koan @Enlighten @Vex
     public void shouldIgnoreWhenVexedAndEnlightened(){
-        /** (@_@) */
-        /** (^_^) */
+        /* (@_@) 4 */
+        /* (^_^) 4 */
     }
 }
