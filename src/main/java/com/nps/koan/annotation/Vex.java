@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
  * Created by nicholas_smith on 02/01/14.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target({ElementType.METHOD})
 public @interface Vex {
 }

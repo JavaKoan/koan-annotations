@@ -121,14 +121,12 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
 
             if(n.getName().equals(koanExecution.getMethod().getName())){
                 List<Comment> comments = n.getAllContainedComments();
-                System.out.println(n.getName());
                 for(Comment c : comments){
                     if (c.getContent().contains(Koan.START_MARKER)) {
                         koanExecution.setStartMarkerPosition(c.getBeginLine());
                      } else if (c.getContent().contains(Koan.END_MARKER)) {
                         koanExecution.setEndMarkerPosition(c.getBeginLine());
                     }
-                    System.out.println(c.getContent() + " S: " + c.getBeginLine());
                 }
             }
         }
