@@ -92,6 +92,10 @@ public class KoanExecution {
         return solution;
     }
 
+    public void setSolution(String solution) {
+        this.solution = solution;
+    }
+
     public String getClassSource() {
         return classSource;
     }

@@ -41,21 +41,7 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
 
         Description description = describeChild(method);
 
-        CompilationUnit cu = null;
-        FileInputStream in = null;
-
-        try {
-            in = KoanReader.getInputStreamByClass(description.getTestClass());
-            cu = JavaParser.parse(in);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                in.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        CompilationUnit cu = getCompilationUnit(description);
 
         if(cu == null){
             throw new KoanError("Failed to load Koan");
@@ -78,6 +64,7 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
         }
 
         if (koanExecution.isToBeEnlightened()) {
+            determineSolution(description.getTestClass(), koanExecution);
             performEnlightenment(koanExecution, description);
         }
 
@@ -91,6 +78,7 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
             runLeaf(methodBlock(method), description, notifier);
         }
     }
+
 
     private void ignoreTest(RunNotifier notifier, Description description) {
         notifier.fireTestIgnored(description);
@@ -132,6 +120,13 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
         }
     }
 
+    private void determineSolution(Class<?> testClass, KoanExecution koanExecution) {
+        String solution = KoanReader.getSolutionFromFile(testClass, koanExecution.getMethod().getName());
+        koanExecution.setSolution(solution);
+
+        System.out.print("Solution for method " + koanExecution.getMethod().getName() + ": " + solution);
+    }
+
     private void performEnlightenment(KoanExecution koanExecution, Description description) {
         String[] lines = koanExecution.getClassSource().split(System.getProperty("line.separator"));
 
@@ -141,7 +136,7 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
             sb.append(lines[i]);
             sb.append(System.getProperty("line.separator"));
         }
-        sb.append("\t\ti = 5;\n");
+        sb.append(koanExecution.getSolution());
         for(int i = koanExecution.getEndMarkerPosition() - 1; i < lines.length; i++){
             sb.append(lines[i]);
             sb.append(System.getProperty("line.separator"));
@@ -165,5 +160,24 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
         }
 
         KoanWriter.writeSourceToFile(description.getTestClass(), sb.toString());
+    }
+
+    private CompilationUnit getCompilationUnit(Description description) {
+        CompilationUnit cu = null;
+        FileInputStream in = null;
+
+        try {
+            in = KoanReader.getInputStreamByClass(description.getTestClass());
+            cu = JavaParser.parse(in);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return cu;
     }
 }

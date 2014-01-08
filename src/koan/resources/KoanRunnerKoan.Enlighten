@@ -1,0 +1,9 @@
+shouldProvideSolution
+[
+        i = 5;
+]
+shouldProvideMultiLineSolution
+[
+        j = 3;
+        i = 3;
+]

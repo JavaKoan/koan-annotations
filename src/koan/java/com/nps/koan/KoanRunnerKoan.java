@@ -28,13 +28,24 @@ public class KoanRunnerKoan {
 		/* (^_^) 2 */
     }
 
-    @Koan @Enlighten
+    @Koan
     public void shouldProvideSolution(){
         int i = 0;
         /* (@_@) 3 */
-		i = 5;
+        i = 5;
 		/* (^_^) 3 */
         assertEquals(5, i);
+    }
+
+    @Koan
+    public void shouldProvideMultiLineSolution(){
+        int i = 0;
+        int j = 0;
+        /* (@_@) 4 */
+        j = 3;
+        i = 3;
+		/* (^_^) 4 */
+        assertEquals(9, i*j);
     }
 
     @Koan
@@ -44,7 +55,7 @@ public class KoanRunnerKoan {
 
     @Koan @Enlighten @Vex
     public void shouldIgnoreWhenVexedAndEnlightened(){
-        /* (@_@) 4 */
-        /* (^_^) 4 */
+        /* (@_@) 5 */
+        /* (^_^) 5 */
     }
 }
