@@ -10,13 +10,11 @@ import org.junit.runners.model.FrameworkMethod;
  */
 public class KoanExecution {
 
-    private int methodStartPosition;
-    private int methodLength;
-
-    private int startMarkerPosition;
+    private int startMarkerLine;
+    //TODO: Add support for multiline start & end markers
     private int startMarkerLength;
 
-    private int endMarkerPosition;
+    private int endMarkerLine;
 
     private boolean isToBeEnlightened;
     private boolean isToBeVexed;
@@ -24,7 +22,6 @@ public class KoanExecution {
 
     private String classSource;
     private String solution;
-    private String methodName;
 
     private FrameworkMethod method;
 
@@ -36,44 +33,20 @@ public class KoanExecution {
         this.isIgnored = method.getAnnotation(Ignore.class) != null || isToBeEnlightened || isToBeVexed;
     }
 
-    public int getMethodStartPosition() {
-        return methodStartPosition;
+    public int getStartMarkerLine() {
+        return startMarkerLine;
     }
 
-    public void setMethodStartPosition(int methodStartPosition) {
-        this.methodStartPosition = methodStartPosition;
+    public void setStartMarkerLine(int startMarkerLine) {
+        this.startMarkerLine = startMarkerLine;
     }
 
-    public int getMethodLength() {
-        return methodLength;
+    public int getEndMarkerLine() {
+        return endMarkerLine;
     }
 
-    public void setMethodLength(int methodLength) {
-        this.methodLength = methodLength;
-    }
-
-    public int getStartMarkerPosition() {
-        return startMarkerPosition;
-    }
-
-    public void setStartMarkerPosition(int startMarkerPosition) {
-        this.startMarkerPosition = startMarkerPosition;
-    }
-
-    public int getStartMarkerLength() {
-        return startMarkerLength;
-    }
-
-    public void setStartMarkerLength(int startMarkerLength) {
-        this.startMarkerLength = startMarkerLength;
-    }
-
-    public int getEndMarkerPosition() {
-        return endMarkerPosition;
-    }
-
-    public void setEndMarkerPosition(int endMarkerPosition) {
-        this.endMarkerPosition = endMarkerPosition;
+    public void setEndMarkerLine(int endMarkerLine) {
+        this.endMarkerLine = endMarkerLine;
     }
 
     public boolean isToBeEnlightened() {

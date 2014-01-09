@@ -12,13 +12,22 @@ import java.io.IOException;
  */
 public class KoanReader {
 
+    private static final String KOAN_JAVA_PATH = "src/koan/java/";
+    private static final String KOAN_RESOURCES_PATH = "src/koan/resources/";
+
+    private static final String PATH_SEPARATOR = "/";
+    private static final String PACKAGE_SEPARATOR = ".";
+
+    private static final String JAVA_EXTENSION = ".java";
+    private static final String SOLUTION_EXTENSION = ".solution";
+
     public static String getSourceByClass(Class<?> testClass) {
         String packagePath = testClass.getPackage().getName();
-        packagePath = packagePath.replace(".", "/");
+        packagePath = packagePath.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
 
         String className = testClass.getSimpleName();
 
-        File file = new File("src/koan/java/" + packagePath + "/" + className + ".java");
+        File file = new File(KOAN_JAVA_PATH + packagePath + PATH_SEPARATOR + className + JAVA_EXTENSION);
    		StringBuffer contents = new StringBuffer();
    		BufferedReader reader = null;
 
@@ -27,7 +36,7 @@ public class KoanReader {
    			String text = null;
 
    			while ((text = reader.readLine()) != null) {
-   				contents.append(text).append(System.getProperty("line.separator"));
+   				contents.append(text).append(System.lineSeparator());
    			}
    		} catch (FileNotFoundException e) {
    			e.printStackTrace();
@@ -47,13 +56,13 @@ public class KoanReader {
 
     public static FileInputStream getInputStreamByClass(Class<?> testClass) {
         String packagePath = testClass.getPackage().getName();
-        packagePath = packagePath.replace(".", "/");
+        packagePath = packagePath.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
 
         String className = testClass.getSimpleName();
 
         FileInputStream in = null;
         try {
-            in = new FileInputStream("src/koan/java/" + packagePath + "/" + className + ".java");
+            in = new FileInputStream(KOAN_JAVA_PATH + packagePath + PATH_SEPARATOR + className + JAVA_EXTENSION);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -63,7 +72,7 @@ public class KoanReader {
     public static String getSolutionFromFile(Class<?> testClass, String methodName){
         String className = testClass.getSimpleName();
 
-        File file = new File("src/koan/resources/" + className + ".Enlighten");
+        File file = new File(KOAN_RESOURCES_PATH + className + SOLUTION_EXTENSION);
         StringBuffer contents = new StringBuffer();
         BufferedReader reader = null;
 
@@ -74,9 +83,8 @@ public class KoanReader {
             while ((text = reader.readLine()) != null) {
                 if(text.equalsIgnoreCase(methodName)){
                     reader.readLine(); // ignore [
-
                     while (!(text = reader.readLine()).equalsIgnoreCase("]")) {
-                        contents.append(text).append(System.getProperty("line.separator"));
+                        contents.append(text).append(System.lineSeparator());
                     }
                 }
             }

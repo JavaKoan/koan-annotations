@@ -1,6 +1,5 @@
 package com.nps.koan;
 
-import com.nps.koan.annotation.Koan;
 import com.nps.koan.error.KoanError;
 import com.nps.koan.io.KoanReader;
 import com.nps.koan.io.KoanWriter;
@@ -26,6 +25,8 @@ import java.util.List;
  */
 public class KoanRunner extends BlockJUnit4ClassRunner {
 
+    private static final String START_MARKER = "(@_@)";
+    private static final String END_MARKER = "(^_^)";
 
     public KoanRunner(Class<?> klass) throws InitializationError {
         super(klass);
@@ -40,16 +41,14 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
     protected void runChild(final FrameworkMethod method, RunNotifier notifier) {
 
         Description description = describeChild(method);
+        CompilationUnit compilationUnit = getCompilationUnit(description);
 
-        CompilationUnit cu = getCompilationUnit(description);
-
-        if(cu == null){
+        if(compilationUnit == null){
             throw new KoanError("Failed to load Koan");
         }
 
         String classSource = KoanReader.getSourceByClass(description.getTestClass());
         KoanExecution koanExecution = new KoanExecution(method, classSource);
-
 
         if (koanExecution.isToBeEnlightened() && koanExecution.isToBeVexed()) {
             notifier.fireTestFailure(new Failure(description, new KoanError("@Vex and @Enlighten are mutually exclusive")));
@@ -57,7 +56,7 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
             return;
         }
 
-        if (!isValidKoan(koanExecution, cu)) {
+        if (!isValidKoan(compilationUnit, koanExecution)) {
             notifier.fireTestFailure(new Failure(description, new KoanError("Koan is missing start /* (@_@) */ and end /* (^_^) */ markers")));
             ignoreTest(notifier, description);
             return;
@@ -65,11 +64,12 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
 
         if (koanExecution.isToBeEnlightened()) {
             determineSolution(description.getTestClass(), koanExecution);
-            performEnlightenment(koanExecution, description);
+            updateKoanSource(koanExecution, description);
         }
 
         if (koanExecution.isToBeVexed()) {
-            removeSolutionInKoan(koanExecution, description);
+            koanExecution.setSolution("");
+            updateKoanSource(koanExecution, description);
         }
 
         if (koanExecution.isIgnored()) {
@@ -85,15 +85,15 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
     }
 
 
-    private boolean isValidKoan(KoanExecution koanExecution, CompilationUnit cu) {
+    private boolean isValidKoan(CompilationUnit compilationUnit, KoanExecution koanExecution) {
 
-        new MethodVisitor().visit(cu, koanExecution);
+        new MethodVisitor().visit(compilationUnit, koanExecution);
 
         //TODO: Improve error handling
-        if (koanExecution.getStartMarkerPosition() == 0) {
+        if (koanExecution.getStartMarkerLine() == 0) {
             return false; // Invalid start marker
         }
-        if (koanExecution.getEndMarkerPosition() == 0) {
+        if (koanExecution.getEndMarkerLine() == 0) {
             return false; // Invalid end marker
         }
 
@@ -103,17 +103,17 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
     private static class MethodVisitor extends VoidVisitorAdapter {
 
         @Override
-        public void visit(MethodDeclaration n, Object arg) {
+        public void visit(MethodDeclaration method, Object arg) {
 
             KoanExecution koanExecution = (KoanExecution)arg;
 
-            if(n.getName().equals(koanExecution.getMethod().getName())){
-                List<Comment> comments = n.getAllContainedComments();
+            if(method.getName().equals(koanExecution.getMethod().getName())){
+                List<Comment> comments = method.getAllContainedComments();
                 for(Comment c : comments){
-                    if (c.getContent().contains(Koan.START_MARKER)) {
-                        koanExecution.setStartMarkerPosition(c.getBeginLine());
-                     } else if (c.getContent().contains(Koan.END_MARKER)) {
-                        koanExecution.setEndMarkerPosition(c.getBeginLine());
+                    if (c.getContent().contains(START_MARKER)) {
+                        koanExecution.setStartMarkerLine(c.getBeginLine());
+                     } else if (c.getContent().contains(END_MARKER)) {
+                        koanExecution.setEndMarkerLine(c.getBeginLine());
                     }
                 }
             }
@@ -123,40 +123,23 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
     private void determineSolution(Class<?> testClass, KoanExecution koanExecution) {
         String solution = KoanReader.getSolutionFromFile(testClass, koanExecution.getMethod().getName());
         koanExecution.setSolution(solution);
-
-        System.out.print("Solution for method " + koanExecution.getMethod().getName() + ": " + solution);
     }
 
-    private void performEnlightenment(KoanExecution koanExecution, Description description) {
-        String[] lines = koanExecution.getClassSource().split(System.getProperty("line.separator"));
+    private void updateKoanSource(KoanExecution koanExecution, Description description) {
+        final String newLine = System.lineSeparator();
+
+        String[] lines = koanExecution.getClassSource().split(newLine);
 
         StringBuilder sb = new StringBuilder();
 
-        for(int i = 0; i < koanExecution.getStartMarkerPosition() ; i++){
+        for(int i = 0; i < koanExecution.getStartMarkerLine() ; i++){
             sb.append(lines[i]);
-            sb.append(System.getProperty("line.separator"));
+            sb.append(newLine);
         }
         sb.append(koanExecution.getSolution());
-        for(int i = koanExecution.getEndMarkerPosition() - 1; i < lines.length; i++){
+        for(int i = koanExecution.getEndMarkerLine() - 1; i < lines.length; i++){
             sb.append(lines[i]);
-            sb.append(System.getProperty("line.separator"));
-        }
-
-        KoanWriter.writeSourceToFile(description.getTestClass(), sb.toString());
-    }
-
-    private void removeSolutionInKoan(KoanExecution koanExecution, Description description) {
-        String[] lines = koanExecution.getClassSource().split(System.getProperty("line.separator"));
-
-        StringBuilder sb = new StringBuilder();
-
-        for(int i = 0; i < koanExecution.getStartMarkerPosition() ; i++){
-            sb.append(lines[i]);
-            sb.append(System.getProperty("line.separator"));
-        }
-        for(int i = koanExecution.getEndMarkerPosition() - 1; i < lines.length; i++){
-            sb.append(lines[i]);
-            sb.append(System.getProperty("line.separator"));
+            sb.append(newLine);
         }
 
         KoanWriter.writeSourceToFile(description.getTestClass(), sb.toString());

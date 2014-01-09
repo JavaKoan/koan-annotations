@@ -28,7 +28,7 @@ public class KoanRunnerKoan {
 		/* (^_^) 2 */
     }
 
-    @Koan
+    @Koan @Enlighten
     public void shouldProvideSolution(){
         int i = 0;
         /* (@_@) 3 */
@@ -37,7 +37,7 @@ public class KoanRunnerKoan {
         assertEquals(5, i);
     }
 
-    @Koan
+    @Koan @Enlighten
     public void shouldProvideMultiLineSolution(){
         int i = 0;
         int j = 0;

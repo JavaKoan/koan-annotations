@@ -10,13 +10,19 @@ import java.io.IOException;
  */
 public class KoanWriter {
 
+    private static final String KOAN_JAVA_PATH = "src/koan/java/";
+    private static final String JAVA_EXTENSION = ".java";
+
+    private static final String PATH_SEPARATOR = "/";
+    private static final String PACKAGE_SEPARATOR = ".";
+
     public static void writeSourceToFile(Class<?> testClass, String newSource) {
         String packagePath = testClass.getPackage().getName();
-        packagePath = packagePath.replace(".", "/");
+        packagePath = packagePath.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
 
         String className = testClass.getSimpleName();
 
-        File file =  new File("src/koan/java/" + packagePath + "/" + className + ".java");
+        File file =  new File(KOAN_JAVA_PATH + packagePath + PATH_SEPARATOR + className + JAVA_EXTENSION);
 
         try {
             FileWriter fw = new FileWriter(file.getAbsoluteFile());

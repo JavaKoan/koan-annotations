@@ -11,6 +11,4 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Koan {
-    public static String START_MARKER = "(@_@)";
-    public static String END_MARKER = "(^_^)";
 }
