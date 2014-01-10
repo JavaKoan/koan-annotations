@@ -21,6 +21,8 @@ public class KoanReader {
     private static final String JAVA_EXTENSION = ".java";
     private static final String SOLUTION_EXTENSION = ".solution";
 
+    private KoanReader(){} // Non-instantiable
+
     public static String getSourceByClass(Class<?> testClass) {
         String packagePath = testClass.getPackage().getName();
         packagePath = packagePath.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);

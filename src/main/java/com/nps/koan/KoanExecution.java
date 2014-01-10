@@ -8,7 +8,7 @@ import org.junit.runners.model.FrameworkMethod;
 /**
  * Created by nicholas_smith on 03/01/14.
  */
-public class KoanExecution {
+public final class KoanExecution {
 
     private int startMarkerLine;
     //TODO: Add support for multiline start & end markers

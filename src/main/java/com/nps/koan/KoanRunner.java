@@ -91,10 +91,10 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
 
         //TODO: Improve error handling
         if (koanExecution.getStartMarkerLine() == 0) {
-            return false; // Invalid start marker
+            return false;
         }
         if (koanExecution.getEndMarkerLine() == 0) {
-            return false; // Invalid end marker
+            return false;
         }
 
         return true;
@@ -109,11 +109,11 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
 
             if(method.getName().equals(koanExecution.getMethod().getName())){
                 List<Comment> comments = method.getAllContainedComments();
-                for(Comment c : comments){
-                    if (c.getContent().contains(START_MARKER)) {
-                        koanExecution.setStartMarkerLine(c.getBeginLine());
-                     } else if (c.getContent().contains(END_MARKER)) {
-                        koanExecution.setEndMarkerLine(c.getBeginLine());
+                for(Comment comment : comments){
+                    if (comment.getContent().contains(START_MARKER)) {
+                        koanExecution.setStartMarkerLine(comment.getBeginLine());
+                     } else if (comment.getContent().contains(END_MARKER)) {
+                        koanExecution.setEndMarkerLine(comment.getBeginLine());
                     }
                 }
             }

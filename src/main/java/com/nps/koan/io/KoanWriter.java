@@ -16,6 +16,8 @@ public class KoanWriter {
     private static final String PATH_SEPARATOR = "/";
     private static final String PACKAGE_SEPARATOR = ".";
 
+    private KoanWriter(){} // Non-instantiable
+
     public static void writeSourceToFile(Class<?> testClass, String newSource) {
         String packagePath = testClass.getPackage().getName();
         packagePath = packagePath.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
