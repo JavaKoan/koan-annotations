@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.google.code.javaparser</groupId>
+  <artifactId>javaparser</artifactId>
+  <version>1.0.11-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20140114.142548</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20140114142548</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0.11-20140114.142548-1</value>
+        <updated>20140114142548</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.11-20140114.142548-1</value>
+        <updated>20140114142548</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

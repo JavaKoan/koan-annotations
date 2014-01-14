@@ -57,7 +57,7 @@ public class KoanRunner extends BlockJUnit4ClassRunner {
         }
 
         if (!isValidKoan(compilationUnit, koanExecution)) {
-            notifier.fireTestFailure(new Failure(description, new KoanError("Koan is missing start /* (@_@) */ and end /* (^_^) */ markers")));
+            notifier.fireTestFailure(new Failure(description, new KoanError("Koan is missing start (@_@) and end (^_^) markers")));
             ignoreTest(notifier, description);
             return;
         }
