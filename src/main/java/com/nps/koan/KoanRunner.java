@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by nicholas_smith on 02/01/14.
  */
-public class KoanRunner extends BlockJUnit4ClassRunner {
+public final class KoanRunner extends BlockJUnit4ClassRunner {
 
     private static final String START_MARKER = "(@_@)";
     private static final String END_MARKER = "(^_^)";

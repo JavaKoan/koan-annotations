@@ -6,14 +6,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Created by nicholas_smith on 06/01/14.
  */
 public class KoanReader {
 
-    private static final String KOAN_JAVA_PATH = "src/koan/java/";
-    private static final String KOAN_RESOURCES_PATH = "src/koan/resources/";
+    private static final String KOAN_JAVA_PATH = "/src/koan/java/";
+    private static final String KOAN_RESOURCES_PATH = "/src/koan/resources/";
 
     private static final String PATH_SEPARATOR = "/";
     private static final String PACKAGE_SEPARATOR = ".";
@@ -24,12 +26,8 @@ public class KoanReader {
     private KoanReader(){} // Non-instantiable
 
     public static String getSourceByClass(Class<?> testClass) {
-        String packagePath = testClass.getPackage().getName();
-        packagePath = packagePath.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
 
-        String className = testClass.getSimpleName();
-
-        File file = new File(KOAN_JAVA_PATH + packagePath + PATH_SEPARATOR + className + JAVA_EXTENSION);
+        File file = new File(getKoanFileLocation(testClass));
    		StringBuffer contents = new StringBuffer();
    		BufferedReader reader = null;
 
@@ -57,14 +55,10 @@ public class KoanReader {
    	}
 
     public static FileInputStream getInputStreamByClass(Class<?> testClass) {
-        String packagePath = testClass.getPackage().getName();
-        packagePath = packagePath.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
-
-        String className = testClass.getSimpleName();
 
         FileInputStream in = null;
         try {
-            in = new FileInputStream(KOAN_JAVA_PATH + packagePath + PATH_SEPARATOR + className + JAVA_EXTENSION);
+            in = new FileInputStream(getKoanFileLocation(testClass));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -72,9 +66,13 @@ public class KoanReader {
     }
 
     public static String getSolutionFromFile(Class<?> testClass, String methodName){
+
+        Path currentRelativePath = Paths.get("");
+        String workingDirectory = currentRelativePath.toAbsolutePath().toString();
+
         String className = testClass.getSimpleName();
 
-        File file = new File(KOAN_RESOURCES_PATH + className + SOLUTION_EXTENSION);
+        File file = new File(workingDirectory + KOAN_RESOURCES_PATH + className + SOLUTION_EXTENSION);
         StringBuffer contents = new StringBuffer();
         BufferedReader reader = null;
 
@@ -105,5 +103,20 @@ public class KoanReader {
         }
 
         return contents.toString();
+    }
+
+
+    private static String getKoanFileLocation(Class<?> testClass) {
+        Path currentRelativePath = Paths.get("");
+
+        StringBuilder sb = new StringBuilder()
+                .append(currentRelativePath.toAbsolutePath().toString())
+                .append(KOAN_JAVA_PATH)
+                .append(testClass.getPackage().getName().replace(PACKAGE_SEPARATOR, PATH_SEPARATOR))
+                .append(PATH_SEPARATOR)
+                .append(testClass.getSimpleName())
+                .append(JAVA_EXTENSION);
+
+        return sb.toString();
     }
 }
