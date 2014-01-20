@@ -1,8 +1,8 @@
-package com.nps.koan;
+package com.nps.koan.fixture;
 
-import com.nps.koan.error.KoanError;
-import com.nps.koan.io.KoanReader;
-import com.nps.koan.io.KoanWriter;
+import com.nps.koan.fixture.error.KoanError;
+import com.nps.koan.fixture.io.KoanReader;
+import com.nps.koan.fixture.io.KoanWriter;
 import japa.parser.JavaParser;
 import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
@@ -33,7 +33,7 @@ public final class KoanRunner extends BlockJUnit4ClassRunner {
     }
 
     protected List<FrameworkMethod> computeTestMethods() {
-        return getTestClass().getAnnotatedMethods(com.nps.koan.annotation.Koan.class);
+        return getTestClass().getAnnotatedMethods(com.nps.koan.fixture.annotation.Koan.class);
     }
 
 
@@ -68,7 +68,7 @@ public final class KoanRunner extends BlockJUnit4ClassRunner {
         }
 
         if (koanExecution.isToBeVexed()) {
-            koanExecution.setSolution("");
+            determineProblem(description.getTestClass(), koanExecution);
             updateKoanSource(koanExecution, description);
         }
 
@@ -123,6 +123,11 @@ public final class KoanRunner extends BlockJUnit4ClassRunner {
     private void determineSolution(Class<?> testClass, KoanExecution koanExecution) {
         String solution = KoanReader.getSolutionFromFile(testClass, koanExecution.getMethod().getName());
         koanExecution.setSolution(solution);
+    }
+
+    private void determineProblem(Class<?> testClass, KoanExecution koanExecution) {
+        String problem = KoanReader.getProblemFromFile(testClass, koanExecution.getMethod().getName());
+        koanExecution.setSolution(problem);
     }
 
     private void updateKoanSource(KoanExecution koanExecution, Description description) {

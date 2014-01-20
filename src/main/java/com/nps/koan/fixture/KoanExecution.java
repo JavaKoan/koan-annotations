@@ -1,7 +1,7 @@
-package com.nps.koan;
+package com.nps.koan.fixture;
 
-import com.nps.koan.annotation.Enlighten;
-import com.nps.koan.annotation.Vex;
+import com.nps.koan.fixture.annotation.Enlighten;
+import com.nps.koan.fixture.annotation.Vex;
 import org.junit.Ignore;
 import org.junit.runners.model.FrameworkMethod;
 

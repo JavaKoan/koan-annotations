@@ -1,4 +1,4 @@
-package com.nps.koan.io;
+package com.nps.koan.fixture.io;
 
 import java.io.BufferedWriter;
 import java.io.File;

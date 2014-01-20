@@ -1,4 +1,4 @@
-package com.nps.koan.io;
+package com.nps.koan.fixture.io;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,6 +22,7 @@ public class KoanReader {
 
     private static final String JAVA_EXTENSION = ".java";
     private static final String SOLUTION_EXTENSION = ".solution";
+    private static final String PROBLEM_EXTENSION = ".problem";
 
     private KoanReader(){} // Non-instantiable
 
@@ -66,13 +67,20 @@ public class KoanReader {
     }
 
     public static String getSolutionFromFile(Class<?> testClass, String methodName){
+        return getSourceFromFile(testClass, methodName, SOLUTION_EXTENSION);
+    }
 
+    public static String getProblemFromFile(Class<?> testClass, String methodName) {
+        return getSourceFromFile(testClass, methodName, PROBLEM_EXTENSION);
+    }
+
+    private static String getSourceFromFile(Class<?> testClass, String methodName, String fileType) {
         Path currentRelativePath = Paths.get("");
         String workingDirectory = currentRelativePath.toAbsolutePath().toString();
 
         String className = testClass.getSimpleName();
 
-        File file = new File(workingDirectory + KOAN_RESOURCES_PATH + className + SOLUTION_EXTENSION);
+        File file = new File(workingDirectory + KOAN_RESOURCES_PATH + className + fileType);
         StringBuffer contents = new StringBuffer();
         BufferedReader reader = null;
 
@@ -105,7 +113,6 @@ public class KoanReader {
         return contents.toString();
     }
 
-
     private static String getKoanFileLocation(Class<?> testClass) {
         Path currentRelativePath = Paths.get("");
 
@@ -119,4 +126,5 @@ public class KoanReader {
 
         return sb.toString();
     }
+
 }

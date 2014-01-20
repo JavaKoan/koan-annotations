@@ -1,4 +1,4 @@
-package com.nps.koan.error;
+package com.nps.koan.fixture.error;
 
 /**
  * Created by nicholas_smith on 03/01/14.

@@ -1,4 +1,4 @@
-package com.nps.koan.annotation;
+package com.nps.koan.fixture.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

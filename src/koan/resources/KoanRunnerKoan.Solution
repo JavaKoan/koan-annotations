@@ -1,9 +1,29 @@
-shouldProvideSolution
+makeTheProductOfIAndJ
 [
-        i = 5;
+        product = i * j;
 ]
-shouldProvideMultiLineSolution
+
+provideTheSolutionToTheProductOfIAndJ
 [
-        j = 3;
-        i = 3;
+        product = i * j;
+]
+
+shouldIgnoreWhenVexedAndEnlightened
+[
+        fail("This Koan should be ignored as it is both Vexed and Enlightened");
+]
+
+provideTheStartingCodeForAKoan
+[
+        int previous1 = 1;
+        int previous2 = 1;
+        int currentFibonacci = 1;
+
+        for(int i= 3; i<= 7; i++){
+            currentFibonacci = previous1 + previous2;
+            previous1 = previous2;
+            previous2 = currentFibonacci;
+        }
+
+        seventhFibonacciNumber = currentFibonacci;
 ]
