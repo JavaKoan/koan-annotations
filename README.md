@@ -1,5 +1,4 @@
-Koan Annotations for Java (^_^)
--------------------------------
+#Koan Annotations for Java (^_^)
 
 This library offers a lightweight mechanism for creating Koan style learning exercises.
 
@@ -12,7 +11,7 @@ Koans are executed like unit tests within the in the IDE.  A Koan implementation
 Teachers should provide both a solution and problem files to the Koans they provide.  Students can leverage the solutions or problems by marking a method with @Enlighten or @Vex.  The framework will then amend the source code to either provide the solution or starting problem respectively.
 
 Simple Example:
-
+---------------
 
     @Koan
     public void makeTheProductOfIAndJ(){
@@ -27,7 +26,11 @@ Simple Example:
         assertThat(product, is(50));
     }
 
-For more information please see the [wiki](https://github.com/SmiddyPence/koan-annotations/wiki)
+More Information
+----------------
+Please see the [wiki](https://github.com/SmiddyPence/koan-annotations/wiki)
 
-Example project implementation see my [java-koans](https://github.com/SmiddyPence/java-koans)
+Example Projects
+----------------
+[github.com/SmiddyPence/java-koans](https://github.com/SmiddyPence/java-koans)
 
