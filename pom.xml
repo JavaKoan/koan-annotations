@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.google.code.javaparser</groupId>
             <artifactId>javaparser</artifactId>
-            <version>1.0.11-SNAPSHOT</version>
+            <version>1.0.11</version>
         </dependency>
     </dependencies>
 
@@ -51,11 +51,4 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>project.local</id>
-            <name>project</name>
-            <url>file:${project.basedir}/repo</url>
-        </repository>
-    </repositories>
 </project>

@@ -8,7 +8,7 @@ Exercises are marked with the @Koan annotation and should have a learning object
 
 Koans are executed like unit tests within the in the IDE.  A Koan implementation without a solution or an incorrect solution should fail - a JUnit red bar.  After a student has meditated and provided the correct solution running the test should cause execution success - JUnit green bar.
 
-Teachers should provide both a solution and problem files to the Koans they provide.  Students can leverage the solutions or problems by marking a method with @Enlighten or @Vex.  The framework will then amend the source code to either provide the solution or starting problem respectively.
+Teachers should provide both a solution and problem file to the Koans they provide.  Students can leverage the solutions or problems by marking a method with @Enlighten or @Vex.  The framework will then amend the source code to either provide the solution or starting problem respectively.
 
 Simple Example:
 ---------------
