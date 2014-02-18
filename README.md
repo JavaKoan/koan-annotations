@@ -34,3 +34,7 @@ Example Projects
 ----------------
 [github.com/SmiddyPence/java-koans](https://github.com/SmiddyPence/java-koans)
 
+
+Status
+------
+[![Build Status](https://drone.io/github.com/SmiddyPence/koan-annotations/status.png)](https://drone.io/github.com/SmiddyPence/koan-annotations/latest)
