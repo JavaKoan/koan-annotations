@@ -3,9 +3,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.nicholaspaulsmith.koan</groupId>
+    <groupId>com.nicholaspaulsmith</groupId>
     <artifactId>koan-annotations</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>Koan Annotations</name>
     <description>Koan Annotations For Java</description>
@@ -23,21 +24,33 @@
         <url>https://github.com/SmiddyPence/koan-annotations.git</url>
         <tag>HEAD</tag>
     </scm>
+    <developers>
+        <developer>
+            <name>Nicholas Smith</name>
+        </developer>
+    </developers>
     <issueManagement>
         <system>GitHub Issue Tracker</system>
         <url>https://github.com/SmiddyPence/koan-annotations/issues</url>
     </issueManagement>
 
+    <properties>
+        <java.version>1.7</java.version>
+        <junit.version>4.11</junit.version>
+        <javaparser.version>1.0.11</javaparser.version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${junit.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.javaparser</groupId>
             <artifactId>javaparser</artifactId>
-            <version>1.0.11</version>
+            <version>${javaparser.version}</version>
         </dependency>
     </dependencies>
 
@@ -45,13 +58,39 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
 </project>

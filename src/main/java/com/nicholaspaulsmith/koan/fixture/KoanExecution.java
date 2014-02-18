@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.nps.koan.fixture;
+package com.nicholaspaulsmith.koan.fixture;
 
-import com.nps.koan.fixture.annotation.Enlighten;
-import com.nps.koan.fixture.annotation.Vex;
+import com.nicholaspaulsmith.koan.fixture.annotation.Enlighten;
+import com.nicholaspaulsmith.koan.fixture.annotation.Vex;
 import org.junit.Ignore;
 import org.junit.runners.model.FrameworkMethod;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.nps.koan.fixture.io;
+package com.nicholaspaulsmith.koan.fixture.io;
 
 import java.io.BufferedWriter;
 import java.io.File;

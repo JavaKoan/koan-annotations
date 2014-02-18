@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package com.nps.koan;
+package com.nicholaspaulsmith.koan.fixture;
 
-import com.nps.koan.fixture.annotation.Enlighten;
-import com.nps.koan.fixture.annotation.Koan;
-import com.nps.koan.fixture.annotation.Vex;
-import com.nps.koan.fixture.KoanRunner;
+import com.nicholaspaulsmith.koan.fixture.annotation.Enlighten;
+import com.nicholaspaulsmith.koan.fixture.annotation.Koan;
+import com.nicholaspaulsmith.koan.fixture.annotation.Vex;
 import org.junit.runner.RunWith;
 
 import static junit.framework.Assert.fail;

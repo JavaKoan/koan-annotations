@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.nicholaspaulsmith.koan.fixture.annotation;
 
-package com.nps.koan.fixture.error;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-public class KoanError extends Error {
-
-    public KoanError(String message) {
-        super(message);
-    }
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD})
+public @interface Vex {
 }

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.nps.koan.fixture;
+package com.nicholaspaulsmith.koan.fixture;
 
-import com.nps.koan.fixture.error.KoanError;
-import com.nps.koan.fixture.io.KoanReader;
-import com.nps.koan.fixture.io.KoanWriter;
+import com.nicholaspaulsmith.koan.fixture.error.KoanError;
+import com.nicholaspaulsmith.koan.fixture.io.KoanReader;
+import com.nicholaspaulsmith.koan.fixture.io.KoanWriter;
 import japa.parser.JavaParser;
 import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
@@ -46,7 +46,7 @@ public final class KoanRunner extends BlockJUnit4ClassRunner {
     }
 
     protected List<FrameworkMethod> computeTestMethods() {
-        return getTestClass().getAnnotatedMethods(com.nps.koan.fixture.annotation.Koan.class);
+        return getTestClass().getAnnotatedMethods(com.nicholaspaulsmith.koan.fixture.annotation.Koan.class);
     }
 
 
