@@ -27,7 +27,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(KoanRunner.class)
-public class KoanRunnerKoan {
+public class SampleKoan {
 
     /**
      * In this exercise students will learn how to use the multiplication operator in Java

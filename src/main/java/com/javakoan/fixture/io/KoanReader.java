@@ -129,15 +129,14 @@ public class KoanReader {
     private static String getKoanFileLocation(Class<?> testClass) {
         Path currentRelativePath = Paths.get("");
 
-        StringBuilder sb = new StringBuilder()
-                .append(currentRelativePath.toAbsolutePath().toString())
-                .append(KOAN_JAVA_PATH)
-                .append(testClass.getPackage().getName().replace(PACKAGE_SEPARATOR, PATH_SEPARATOR))
-                .append(PATH_SEPARATOR)
-                .append(testClass.getSimpleName())
-                .append(JAVA_EXTENSION);
+        String path = currentRelativePath.toAbsolutePath().toString() +
+                KOAN_JAVA_PATH +
+                testClass.getPackage().getName().replace(PACKAGE_SEPARATOR, PATH_SEPARATOR) +
+                PATH_SEPARATOR +
+                testClass.getSimpleName() +
+                JAVA_EXTENSION;
 
-        return sb.toString();
+        return path;
     }
 
 }
