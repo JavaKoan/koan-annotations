@@ -8,7 +8,7 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.nicholaspaulsmith</groupId>
+    <groupId>com.javakoan</groupId>
     <artifactId>koan-annotations</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
