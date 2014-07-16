@@ -20,6 +20,11 @@ import com.javakoan.fixture.annotation.Vex;
 import org.junit.Ignore;
 import org.junit.runners.model.FrameworkMethod;
 
+/**
+ * The type Koan execution.
+ *
+ * Holds run-time parameters for a given Koans execution.
+ */
 public final class KoanExecution {
 
     private int startMarkerLine;
@@ -27,10 +32,6 @@ public final class KoanExecution {
     private int startMarkerLength;
 
     private int endMarkerLine;
-
-    private boolean isToBeEnlightened;
-    private boolean isToBeVexed;
-    private boolean isIgnored;
 
     private String classSource;
     private String solution;
@@ -40,9 +41,6 @@ public final class KoanExecution {
     public KoanExecution(FrameworkMethod method, String classSource) {
         this.method = method;
         this.classSource = classSource;
-        this.isToBeEnlightened = method.getAnnotation(Enlighten.class) != null ? true : false;
-        this.isToBeVexed = method.getAnnotation(Vex.class) != null ? true : false;
-        this.isIgnored = method.getAnnotation(Ignore.class) != null || isToBeEnlightened || isToBeVexed;
     }
 
     public int getStartMarkerLine() {
@@ -62,15 +60,15 @@ public final class KoanExecution {
     }
 
     public boolean isToBeEnlightened() {
-        return isToBeEnlightened;
+        return method.getAnnotation(Enlighten.class) != null ? true : false;
     }
 
     public boolean isToBeVexed() {
-        return isToBeVexed;
+        return method.getAnnotation(Vex.class) != null ? true : false;
     }
 
     public boolean isIgnored() {
-        return isIgnored;
+        return method.getAnnotation(Ignore.class) != null || isToBeEnlightened() || isToBeVexed();
     }
 
     public String getSolution() {

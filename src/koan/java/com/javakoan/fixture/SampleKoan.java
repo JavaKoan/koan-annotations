@@ -55,7 +55,7 @@ public class SampleKoan {
         int product = 0;
 
         /* (@_@) */
-        product = i * j;
+
         /* (^_^) */
 
         assertThat(product, is(50));

@@ -16,6 +16,7 @@
 
 package com.javakoan.fixture.error;
 
+
 public class KoanError extends Error {
 
     public KoanError(String message) {

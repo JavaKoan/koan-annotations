@@ -23,6 +23,11 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * The type Koan writer.
+ *
+ * Responsible for writing koan files to disk
+ */
 public class KoanWriter {
 
     private static final String KOAN_JAVA_PATH = "/src/koan/java/";
@@ -33,14 +38,20 @@ public class KoanWriter {
 
     private KoanWriter(){} // Non-instantiable
 
-    public static void writeSourceToFile(Class<?> testClass, String newSource) {
+    /**
+     * Write source to file.
+     *
+     * @param koanClass the koan class
+     * @param newSource the source code to be written
+     */
+    public static void writeSourceToFile(Class<?> koanClass, String newSource) {
         Path currentRelativePath = Paths.get("");
         String workingDirectory = currentRelativePath.toAbsolutePath().toString();
 
-        String packagePath = testClass.getPackage().getName();
+        String packagePath = koanClass.getPackage().getName();
         packagePath = packagePath.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
 
-        String className = testClass.getSimpleName();
+        String className = koanClass.getSimpleName();
 
         File file =  new File(workingDirectory + KOAN_JAVA_PATH + packagePath + PATH_SEPARATOR + className + JAVA_EXTENSION);
 

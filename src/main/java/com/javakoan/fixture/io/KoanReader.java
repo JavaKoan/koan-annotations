@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.javakoan.fixture.io;
 
 import java.io.BufferedReader;
@@ -25,6 +24,11 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * The type Koan reader.
+ *
+ * Responsible for reading the content of files associate with Koans .java, .solution and .problem
+ */
 public class KoanReader {
 
     private static final String KOAN_JAVA_PATH = "/src/koan/java/";
@@ -39,9 +43,15 @@ public class KoanReader {
 
     private KoanReader(){} // Non-instantiable
 
-    public static String getSourceByClass(Class<?> testClass) {
+    /**
+     * Gets source for a class.
+     *
+     * @param koanClass the koan class
+     * @return the source code as a string
+     */
+    public static String getSourceByClass(Class<?> koanClass) {
 
-        File file = new File(getKoanFileLocation(testClass));
+        File file = new File(getKoanFileLocation(koanClass));
    		StringBuffer contents = new StringBuffer();
    		BufferedReader reader = null;
 
@@ -68,23 +78,43 @@ public class KoanReader {
    		return contents.toString();
    	}
 
-    public static FileInputStream getInputStreamByClass(Class<?> testClass) {
+    /**
+     * Gets an input stream by class.
+     *
+     * @param koanClass the koan class
+     * @return the input stream relating to the class file
+     */
+    public static FileInputStream getInputStreamByClass(Class<?> koanClass) {
 
         FileInputStream in = null;
         try {
-            in = new FileInputStream(getKoanFileLocation(testClass));
+            in = new FileInputStream(getKoanFileLocation(koanClass));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return in;
     }
 
-    public static String getSolutionFromFile(Class<?> testClass, String methodName){
-        return getSourceFromFile(testClass, methodName, SOLUTION_EXTENSION);
+    /**
+     * Gets solution for a koan by method name.
+     *
+     * @param koanClass the koan class
+     * @param methodName the method name of the solution required
+     * @return the solution content to be inserted between the koan start and end markers
+     */
+    public static String getSolutionFromFile(Class<?> koanClass, String methodName){
+        return getSourceFromFile(koanClass, methodName, SOLUTION_EXTENSION);
     }
 
-    public static String getProblemFromFile(Class<?> testClass, String methodName) {
-        return getSourceFromFile(testClass, methodName, PROBLEM_EXTENSION);
+    /**
+     * Gets problem for a koan by method name.
+     *
+     * @param koanClass the koan class
+     * @param methodName the method name of the problem required
+     * @return the problem content to be inserted between the koan start and end markers
+     */
+    public static String getProblemFromFile(Class<?> koanClass, String methodName) {
+        return getSourceFromFile(koanClass, methodName, PROBLEM_EXTENSION);
     }
 
     private static String getSourceFromFile(Class<?> testClass, String methodName, String fileType) {

@@ -36,6 +36,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The type Koan runner.
+ *
+ * Class that provides mechanism to execute Koans within the JUnit framework.
+ */
 public final class KoanRunner extends BlockJUnit4ClassRunner {
 
     private static final String START_MARKER = "(@_@)";
@@ -70,7 +75,8 @@ public final class KoanRunner extends BlockJUnit4ClassRunner {
         }
 
         if (!isValidKoan(compilationUnit, koanExecution)) {
-            notifier.fireTestFailure(new Failure(description, new KoanError("Koan is missing start (@_@) and end (^_^) markers")));
+            notifier.fireTestFailure(new Failure(description, new KoanError("Koan is missing start " +START_MARKER+
+                    " and end " +END_MARKER+ " markers")));
             ignoreTest(notifier, description);
             return;
         }
