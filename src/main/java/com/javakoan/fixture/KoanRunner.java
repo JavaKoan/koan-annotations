@@ -84,11 +84,13 @@ public final class KoanRunner extends BlockJUnit4ClassRunner {
         if (koanExecution.isToBeEnlightened()) {
             determineSolution(description.getTestClass(), koanExecution);
             updateKoanSource(koanExecution, description);
+            System.out.println("Koan "+method.getName()+" is ignored as currently marked with @Enlighten");
         }
 
         if (koanExecution.isToBeVexed()) {
             determineProblem(description.getTestClass(), koanExecution);
             updateKoanSource(koanExecution, description);
+            System.out.println("Koan "+method.getName()+" is ignored as currently marked with @Vex");
         }
 
         if (koanExecution.isIgnored()) {

@@ -140,9 +140,10 @@ public class KoanReader {
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            contents.append("");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("There was an error while loading the problem file");
+            contents.append("");
         } finally {
             try {
                 if (reader != null) {
