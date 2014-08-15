@@ -37,6 +37,7 @@ Please see the [wiki](https://github.com/SmiddyPence/koan-annotations/wiki)
 Example Uses
 ------------
 [github.com/SmiddyPence/java-koans](https://github.com/SmiddyPence/java-koans)
+
 [github.com/SmiddyPence/neo4j-tutorial](https://github.com/SmiddyPence/neo4j-tutorial)
 
 
