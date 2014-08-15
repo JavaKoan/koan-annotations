@@ -15,15 +15,20 @@ Simple Example:
 ```Java
 @RunWith(KoanRunner.class)
 public class MyKoans {  
+
+    /**
+    * Meditate on making the product of two numbers.
+    * Hint: You will need to use an arithmetic operator
+    */
     @Koan
     public void makeTheProductOfIAndJ(){
         int i = 10;
         int j = 5;
         int product = 0;
 
-        /* (@_@) Meditation starts here*/
-
-        /* (^_^) */
+        /* (@_@) Meditation starts here */
+        
+        /* (^_^) Enlightenment reached here */
 
         assertThat(product, is(50));
     }
