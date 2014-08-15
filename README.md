@@ -12,7 +12,9 @@ Teachers should provide both a solution and problem file to the Koans they provi
 
 Simple Example:
 ---------------
-
+```Java
+@RunWith(KoanRunner.class)
+public class MyKoans {  
     @Koan
     public void makeTheProductOfIAndJ(){
         int i = 10;
@@ -25,14 +27,17 @@ Simple Example:
 
         assertThat(product, is(50));
     }
+}
+```
 
 More Information
 ----------------
 Please see the [wiki](https://github.com/SmiddyPence/koan-annotations/wiki)
 
-Example Projects
-----------------
+Example Uses
+------------
 [github.com/SmiddyPence/java-koans](https://github.com/SmiddyPence/java-koans)
+[github.com/SmiddyPence/neo4j-tutorial](https://github.com/SmiddyPence/neo4j-tutorial)
 
 
 Status
