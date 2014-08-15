@@ -39,6 +39,17 @@ More Information
 ----------------
 Please see the [wiki](https://github.com/SmiddyPence/koan-annotations/wiki)
 
+Dependency
+----------
+
+```xml
+<dependency>
+    <groupId>com.javakoan</groupId>
+    <artifactId>koan-annotations</artifactId>
+    <version>1.0.2</version>
+</dependency>
+```
+
 Example Uses
 ------------
 [github.com/SmiddyPence/java-koans](https://github.com/SmiddyPence/java-koans)
