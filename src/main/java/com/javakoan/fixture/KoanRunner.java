@@ -16,15 +16,16 @@
 
 package com.javakoan.fixture;
 
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ParseException;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.comments.Comment;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.javakoan.fixture.error.KoanError;
 import com.javakoan.fixture.io.KoanReader;
 import com.javakoan.fixture.io.KoanWriter;
-import japa.parser.JavaParser;
-import japa.parser.ParseException;
-import japa.parser.ast.CompilationUnit;
-import japa.parser.ast.body.MethodDeclaration;
-import japa.parser.ast.comments.Comment;
-import japa.parser.ast.visitor.VoidVisitorAdapter;
+
 import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
