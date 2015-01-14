@@ -12,27 +12,49 @@ Teachers should provide both a solution and problem file to the Koans they provi
 
 Simple Example:
 ---------------
+```Java
+@RunWith(KoanRunner.class)
+public class MyKoans {  
 
+    /**
+    * Meditate on making the product of two numbers.
+    * Hint: You will need to use an arithmetic operator
+    */
     @Koan
     public void makeTheProductOfIAndJ(){
         int i = 10;
         int j = 5;
         int product = 0;
 
-        /* (@_@) Meditation starts here*/
-
-        /* (^_^) */
+        /* (@_@) Meditation starts here */
+        
+        /* (^_^) Enlightenment reached here */
 
         assertThat(product, is(50));
     }
+}
+```
 
 More Information
 ----------------
 Please see the [wiki](https://github.com/SmiddyPence/koan-annotations/wiki)
 
-Example Projects
-----------------
+Dependency
+----------
+
+```xml
+<dependency>
+    <groupId>com.javakoan</groupId>
+    <artifactId>koan-annotations</artifactId>
+    <version>1.0.2</version>
+</dependency>
+```
+
+Example Uses
+------------
 [github.com/SmiddyPence/java-koans](https://github.com/SmiddyPence/java-koans)
+
+[github.com/SmiddyPence/neo4j-tutorial](https://github.com/SmiddyPence/neo4j-tutorial)
 
 
 Status
