@@ -59,4 +59,4 @@ Example Uses
 
 Status
 ------
-[![Build Status](https://drone.io/github.com/SmiddyPence/koan-annotations/status.png)](https://drone.io/github.com/SmiddyPence/koan-annotations/latest)
+[![Build Status](https://travis-ci.org/SmiddyPence/koan-annotations.svg?branch=master)](https://travis-ci.org/SmiddyPence/koan-annotations)
