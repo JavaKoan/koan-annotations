@@ -37,7 +37,7 @@ public class MyKoans {
 
 More Information
 ----------------
-Please see the [wiki](https://github.com/SmiddyPence/koan-annotations/wiki)
+Please see the [wiki](https://github.com/JavaKoan/koan-annotations/wiki)
 
 Dependency
 ----------
@@ -52,11 +52,11 @@ Dependency
 
 Example Uses
 ------------
-[github.com/SmiddyPence/java-koans](https://github.com/SmiddyPence/java-koans)
+[github.com/JavaKoan/java-koans](https://github.com/JavaKoan/java-koans)
 
 [github.com/SmiddyPence/neo4j-tutorial](https://github.com/SmiddyPence/neo4j-tutorial)
 
 
 Status
 ------
-[![Build Status](https://travis-ci.org/SmiddyPence/koan-annotations.svg?branch=master)](https://travis-ci.org/SmiddyPence/koan-annotations)
+[![Build Status](https://travis-ci.org/JavaKoan/koan-annotations.svg?branch=master)](https://travis-ci.org/JavaKoan/koan-annotations)
