@@ -15,7 +15,7 @@
 
     <name>Koan Annotations</name>
     <description>Koan Annotations For Java</description>
-    <url>https://github.com/SmiddyPence/koan-annotations</url>
+    <url>https://github.com/JavaKoan/koan-annotations</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -24,9 +24,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git@github.com:SmiddyPence/koan-annotations.git</connection>
-        <developerConnection>scm:git:git@github.com:SmiddyPence/koan-annotations.git</developerConnection>
-        <url>https://github.com/SmiddyPence/koan-annotations.git</url>
+        <connection>scm:git:git@github.com:JavaKoan/koan-annotations.git</connection>
+        <developerConnection>scm:git:git@github.com:JavaKoan/koan-annotations.git</developerConnection>
+        <url>https://github.com/JavaKoan/koan-annotations.git</url>
         <tag>HEAD</tag>
     </scm>
     <developers>
@@ -36,13 +36,13 @@
     </developers>
     <issueManagement>
         <system>GitHub Issue Tracker</system>
-        <url>https://github.com/SmiddyPence/koan-annotations/issues</url>
+        <url>https://github.com/JavaKoan/koan-annotations/issues</url>
     </issueManagement>
 
     <properties>
         <java.version>1.7</java.version>
         <junit.version>4.11</junit.version>
-        <javaparser.version>2.0.0</javaparser.version>
+        <javaparser.version>2.2.1</javaparser.version>
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     </properties>
 
