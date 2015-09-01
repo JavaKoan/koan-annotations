@@ -46,7 +46,7 @@ Dependency
 <dependency>
     <groupId>com.javakoan</groupId>
     <artifactId>koan-annotations</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 
