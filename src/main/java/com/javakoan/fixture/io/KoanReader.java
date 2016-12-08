@@ -52,7 +52,7 @@ public class KoanReader {
     public static String getSourceByClass(Class<?> koanClass) {
 
         File file = new File(getKoanFileLocation(koanClass));
-   		StringBuffer contents = new StringBuffer();
+   		StringBuilder contents = new StringBuilder();
    		BufferedReader reader = null;
 
    		try {
@@ -62,8 +62,6 @@ public class KoanReader {
    			while ((text = reader.readLine()) != null) {
    				contents.append(text).append(System.lineSeparator());
    			}
-   		} catch (FileNotFoundException e) {
-   			e.printStackTrace();
    		} catch (IOException e) {
    			e.printStackTrace();
    		} finally {
@@ -124,7 +122,7 @@ public class KoanReader {
         String className = testClass.getSimpleName();
 
         File file = new File(workingDirectory + KOAN_RESOURCES_PATH + className + fileType);
-        StringBuffer contents = new StringBuffer();
+        StringBuilder contents = new StringBuilder();
         BufferedReader reader = null;
 
         try {
@@ -160,14 +158,12 @@ public class KoanReader {
     private static String getKoanFileLocation(Class<?> testClass) {
         Path currentRelativePath = Paths.get("");
 
-        String path = currentRelativePath.toAbsolutePath().toString() +
+        return currentRelativePath.toAbsolutePath().toString() +
                 KOAN_JAVA_PATH +
                 testClass.getPackage().getName().replace(PACKAGE_SEPARATOR, PATH_SEPARATOR) +
                 PATH_SEPARATOR +
                 testClass.getSimpleName() +
                 JAVA_EXTENSION;
-
-        return path;
     }
 
 }

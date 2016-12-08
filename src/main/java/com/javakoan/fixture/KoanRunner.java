@@ -17,7 +17,7 @@
 package com.javakoan.fixture;
 
 import com.github.javaparser.JavaParser;
-import com.github.javaparser.ParseException;
+import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.comments.Comment;
@@ -122,20 +122,19 @@ public final class KoanRunner extends BlockJUnit4ClassRunner {
         return true;
     }
 
-    private static class MethodVisitor extends VoidVisitorAdapter {
+    private static class MethodVisitor extends VoidVisitorAdapter<KoanExecution> {
 
         @Override
-        public void visit(MethodDeclaration method, Object arg) {
+        public void visit(MethodDeclaration method, KoanExecution koanExecution) {
 
-            KoanExecution koanExecution = (KoanExecution)arg;
-
-            if(method.getName().equals(koanExecution.getMethod().getName())){
+            if(method.getNameAsString().equals(koanExecution.getMethod().getName())){
                 List<Comment> comments = method.getAllContainedComments();
                 for(Comment comment : comments){
+                    final int commentLine = comment.getBegin().get().line;
                     if (comment.getContent().contains(START_MARKER)) {
-                        koanExecution.setStartMarkerLine(comment.getBeginLine());
+                        koanExecution.setStartMarkerLine(commentLine);
                      } else if (comment.getContent().contains(END_MARKER)) {
-                        koanExecution.setEndMarkerLine(comment.getBeginLine());
+                        koanExecution.setEndMarkerLine(commentLine);
                     }
                 }
             }
@@ -179,7 +178,7 @@ public final class KoanRunner extends BlockJUnit4ClassRunner {
         try {
             in = KoanReader.getInputStreamByClass(description.getTestClass());
             cu = JavaParser.parse(in);
-        } catch (ParseException e) {
+        } catch (ParseProblemException e) {
             e.printStackTrace();
         } finally {
             try {
