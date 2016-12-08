@@ -60,11 +60,11 @@ public final class KoanExecution {
     }
 
     public boolean isToBeEnlightened() {
-        return method.getAnnotation(Enlighten.class) != null ? true : false;
+        return method.getAnnotation(Enlighten.class) != null;
     }
 
     public boolean isToBeVexed() {
-        return method.getAnnotation(Vex.class) != null ? true : false;
+        return method.getAnnotation(Vex.class) != null;
     }
 
     public boolean isIgnored() {
