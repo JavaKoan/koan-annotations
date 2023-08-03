@@ -54,9 +54,9 @@ Example Uses
 ------------
 [github.com/JavaKoan/java-koans](https://github.com/JavaKoan/java-koans)
 
-[github.com/SmiddyPence/neo4j-tutorial](https://github.com/SmiddyPence/neo4j-tutorial)
 
 
 Status
 ------
-[![Build Status](https://travis-ci.org/JavaKoan/koan-annotations.svg?branch=master)](https://travis-ci.org/JavaKoan/koan-annotations)
+[![build status](https://github.com/JavaKoan/koan-annotations/actions/workflows/maven-package.yml/badge.svg?branch=master)](https://github.com/JavaKoan/koan-annotations/actions)
+
